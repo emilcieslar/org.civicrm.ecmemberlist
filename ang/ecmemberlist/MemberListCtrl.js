@@ -23,7 +23,7 @@
 
                             // Memberships array
                             // TODO: remove splice, now we need just a limited number of members to make it faster
-                            var memberships = result.values.splice(0, 3),
+                            var memberships = result.values,
                             // Defer promise
                             deferred = $q.defer(),
                             membershipPromises,
