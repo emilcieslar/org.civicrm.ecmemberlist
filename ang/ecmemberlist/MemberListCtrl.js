@@ -2,88 +2,41 @@
 
     angular.module('ecmemberlist')
 
-    .config(function($routeProvider) {
-        $routeProvider.when('/member-list', {
-            controller: 'MemberListCtrl',
-            controllerAs: 'MLCtrl',
-            templateUrl: '~/ecmemberlist/MemberListCtrl.html',
-            resolve: {
-
-                theMembers: function(crmApi, $q) {
-
-                    return crmApi('Membership', 'get', {
-
-                        "sequential": 1
-
-                    })
-
-                    .then(
-
-                        function fulfilled(result) {
-
-                            // Memberships array
-                            // TODO: remove splice, now we need just a limited number of members to make it faster
-                            var memberships = result.values,
-                            // Defer promise
-                            deferred = $q.defer(),
-                            membershipPromises,
-                            modifiedMemberships = [];
-
-                            // For each membership, we have to get contact name
-                            membershipPromises = memberships.map(function eachMembership(membership, index) {
-
-                                return (function(membership) {
-
-                                    return crmApi('Contact', 'getsingle', {
-                                        "id": membership.contact_id
-                                    }).then(
-
-                                        function fulfilled(contact) {
-
-                                            membership.display_name = contact.display_name;
-                                            return membership;
-
-                                        }
-
-                                    );
-
-                                })(membership);
-
-                            });
-
-                            return $q.all(membershipPromises);
-
-                        }
-
-                    );
-                }
-
-            }
-        });
-    })
-
     .controller('MemberListCtrl', ['theMembers', '$filter', function(theMembers, $filter) {
 
+        // Define members that will be displayed in the template
         this.members = theMembers;
 
+        // Define default values for filtering join/end date
         this.filters = {
             join_date: 'yyyy-mm-dd',
             end_date: 'yyyy-mm-dd'
         }
 
+        /**
+         * Filters out membership items based on what data user provides (join/end date of membership)
+         * @returns {boolean} whether or not the item should be filtered out
+         */
         this.fromToFilter = function fromToFilter() {
 
+            // Regex that makes sure filter only works for correct date format
+            // In this case it's yyyy-mm-dd
             var regexDate = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
 
             return function (item) {
 
+                // By default, nothing is filtered out
                 var join_date_filter = true,
                     end_date_filter = true;
 
+                // If user specifies correct join_date, filter out those values that have
+                // join_date bigger or equal to what user specified
                 if(regexDate.test(this.filters.join_date)) {
                     join_date_filter = item.join_date >= this.filters.join_date;
                 }
 
+                // If user specifies correct end_date, filter out those values that have
+                // end_date smaller or equal to what user specified
                 if(regexDate.test(this.filters.end_date)) {
                     end_date_filter = item.end_date <= this.filters.end_date;
                 }

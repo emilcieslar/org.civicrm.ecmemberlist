@@ -1,0 +1,44 @@
+<h2>Memberships</h2>
+
+<main>
+    <table>
+
+        <thead>
+            <th>Name</th>
+            <th>
+                Join date
+                <input type="text" name="join_date" ng-model="MLCtrl.filters.join_date">
+                <!--
+                    I have tried using the following built-in date picker, however console throws error:
+                    VM2161:1 Uncaught TypeError: Cannot read property 'element' of undefined_selectDate
+                        @ VM2161:1_selectDay
+                        @ jquery-ui.min.js?oekg72:8selectDay
+                        @ jquery-ui.min.js?oekg72:8dispatch
+                        @ jquery.js:4670r.handle
+                        @ jquery.js:4338
+                    <input crm-ui-datepicker="{date: 'yy-mm-dd', time: false}" ng-model="MLCtrl.filters.join_date"/>
+
+                    I have also tried looking for CiviCRM “relative date” field in existing UI elements in docs
+                    (https://wiki.civicrm.org/confluence/display/CRMDOC/UI+Elements+Reference) however unsuccesfully.
+                -->
+            </th>
+            <th>
+                End date
+                <input type="text" name="end_date" ng-model="MLCtrl.filters.end_date">
+                <!-- Same here as above
+                <input crm-ui-datepicker="{date: 'yy-mm-dd', time: false}" ng-model="MLCtrl.filters.end_date"/>-->
+            </th>
+            <th>Membership</th>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="member in MLCtrl.members | filter:MLCtrl.fromToFilter() track by $index">
+                <td ng-bind="member.display_name"></td>
+                <td ng-bind="member.join_date"></td>
+                <td ng-bind="member.end_date"></td>
+                <td ng-bind="member.membership_name"></td>
+            </tr>
+        </tbody>
+
+    </table>
+</main>
