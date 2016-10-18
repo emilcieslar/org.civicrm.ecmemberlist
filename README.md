@@ -20,6 +20,8 @@ pass: demo
 
 * The date filtering is very basic as it's not based on time, only on numbers. For example, if you have a date range between 2015-05-20 and 2015-06-20, it basically treats the dates as 20150520 and 20150620. Therefore any number (date) that is not within those numbers is filtered out.
 
+* I have managed to create CiviCRM menu link, it's in the navigation under "Member List".
+
 * I have tried using built-in crm-ui-datepicker, however console throws error:
 	```
 	VM2161:1 Uncaught TypeError: Cannot read property 'element' of undefined_selectDate
@@ -30,5 +32,4 @@ pass: demo
 		@ jquery.js:4338
 	```
 	I have also tried looking for CiviCRM “relative date” field in [existing UI elements in docs](https://wiki.civicrm.org/confluence/display/CRMDOC/UI+Elements+Reference), however unsuccesfully.
-
 
