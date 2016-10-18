@@ -8,15 +8,15 @@
         $routeProvider.when('/member-list', {
             controller: 'MemberListCtrl',
             controllerAs: 'MLCtrl',
-            templateUrl: '~/ecmemberlist/MemberList.html',
+            templateUrl: '~/ecmemberlist/member-list.html',
 
             // Resolve initial data before controller is initialized
             resolve: {
 
                 // Get the memberships from MemberListInitialData factory
-                theMembers: ['MemberListInitialData', function(MemberListInitialData) {
+                theMembers: ['MemberListInitialDataService', function(MemberListInitialDataService) {
 
-                    return MemberListInitialData();
+                    return MemberListInitialDataService.getMemberships();
 
                 }]
 

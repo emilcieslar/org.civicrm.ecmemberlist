@@ -1,0 +1,25 @@
+{
+  "name": "org.civicrm.ecmemberlist",
+  "version": "1.0.0",
+  "description": "CiviCRM extension for displaying memberships",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilcieslar/org.civicrm.ecmemberlist.git"
+  },
+  "author": "Emil Cieslar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emilcieslar/org.civicrm.ecmemberlist/issues"
+  },
+  "homepage": "https://github.com/emilcieslar/org.civicrm.ecmemberlist#readme",
+  "devDependencies": {
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2"
+  }
+}

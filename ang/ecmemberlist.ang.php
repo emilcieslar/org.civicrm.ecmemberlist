@@ -8,7 +8,7 @@ return array (
   array (
     0 => 'ang/ecmemberlist.js',
     1 => 'ang/ecmemberlist/*.js',
-    2 => 'ang/ecmemberlist/*/*.js',
+    2 => 'ang/ecmemberlist/*/*.js'
   ),
   'css' => 
   array (

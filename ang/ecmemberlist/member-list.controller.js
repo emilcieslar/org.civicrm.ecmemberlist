@@ -15,7 +15,7 @@
 
         /**
          * Filters out membership items based on what data user provides (join/end date of membership)
-         * @returns {boolean} whether or not the item should be filtered out
+         * @returns {function} that evaluates whether or not the item should be filtered out
          */
         this.fromToFilter = function fromToFilter() {
 
