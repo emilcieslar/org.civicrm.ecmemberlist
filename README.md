@@ -33,3 +33,9 @@ pass: demo
 	```
 	I have also tried looking for CiviCRM “relative date” field in [existing UI elements in docs](https://wiki.civicrm.org/confluence/display/CRMDOC/UI+Elements+Reference), however unsuccesfully.
 
+
+## Testing
+
+1. To be able to test, you must run `npm install` to install karma + jasmine.
+2. Project must be within the `extensions` folder to run the test successfully as it requires CRM modules.
+3. Run the tests using `npm run test`
